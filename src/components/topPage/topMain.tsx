@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import pencil from "../../assets/images/pencil.jpg";
 import Paper from "@material-ui/core/Paper";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
@@ -27,8 +27,15 @@ const useStyle = makeStyles(() =>
 	})
 );
 
+// 検索窓コンポーネント
 const TopMain: FC = () => {
 	const classes = useStyle();
+	// const [値を保持する変数, 変数の値を変える関数] = useState(初期値);4
+	const [keyword, setKeyword] = useState("");
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setKeyword(event.target.value);
+	};
 
 	return (
 		<div className={classes.background}>
@@ -39,6 +46,7 @@ const TopMain: FC = () => {
 				<InputBase
 					className={classes.inputbase}
 					placeholder="検索する文字列を入力してください"
+					onChange={handleChange}
 				/>
 			</Paper>
 		</div>
