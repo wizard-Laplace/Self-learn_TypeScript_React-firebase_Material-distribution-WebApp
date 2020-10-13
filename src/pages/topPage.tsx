@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import TopHeader from "../components/topPage/topHeader";
 import TopMain from "../components/topPage/topMain";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ResultPage from "./resultPage";
 
 const TopPage: FC = () => {
 	return (
@@ -12,7 +13,7 @@ const TopPage: FC = () => {
 					<TopMain />
 				</Route>
 				<Route path="/search/:keyword" exact>
-					検索結果
+					<ResultPage />
 				</Route>
 			</Switch>
 		</Router>
