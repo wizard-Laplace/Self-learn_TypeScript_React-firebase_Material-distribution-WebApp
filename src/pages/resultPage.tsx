@@ -1,5 +1,4 @@
-import { Pages } from "@material-ui/icons";
-import React, { Component, FC } from "react";
+import React, { FC } from "react";
 import TopHeader from "../components/topPage/topHeader";
 import ImageItemList from "../components/resultPage/resultImageList";
 
