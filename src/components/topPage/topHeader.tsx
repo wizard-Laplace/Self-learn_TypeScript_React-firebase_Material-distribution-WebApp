@@ -7,7 +7,7 @@ const TopHeader: FC = () => {
 	return (
 		<AppBar position="static">
 			<Toolbar>
-				<h2>title</h2>
+				<h2>犬、普通の犬、車、普通の車と検索すると画像表示ページへ遷移する</h2>
 			</Toolbar>
 		</AppBar>
 	);
