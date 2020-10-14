@@ -1,9 +1,7 @@
 学習コンテンツ
 
-https://www.udemy.com/course/firebasereact-hookstypescript-todo/
+https://www.udemy.com/course/react-hooks-typescript-firebase/
 
-TypeScript 作成した ToDo アプリを Firebase 上にデプロイ
+素材配布 WebApp
 
-アプリの URL
-
-https://udemy-todo-121bb.web.app
+DB とストレージは Firebase を使用
