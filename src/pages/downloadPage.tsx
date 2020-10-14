@@ -1,32 +1,29 @@
-import React, { FC, useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-import firebase from "../../firebase";
-import { TileData } from "../../types/types";
+import firebase from "../firebase";
+import TopHeader from "../components/topPage/topHeader";
+import { TileData } from "../types/types";
 
 const useStyles = makeStyles(() =>
 	createStyles({
-		root: {
-			display: "flex",
-			flexWrap: "wrap",
-			width: "80%",
+		main: {
 			textAlign: "center",
-			marginTop: "2%",
+			marginTop: "5%",
 		},
 		tileImage: {
-			height: "218px",
-			width: "218px",
+			height: "436px",
+			width: "436px",
 		},
 	})
 );
 
-const ImageItemList: FC = () => {
-	const [data, setData] = useState<TileData[]>([]);
+const DownloadPage: FC = () => {
 	const { keyword } = useParams();
 	const classes = useStyles();
-	const history = useHistory();
+	const [data, setData] = useState<TileData[]>([]);
 
 	const getData = async (searchWord: string | undefined) => {
 		const db = firebase.firestore();
@@ -50,22 +47,43 @@ const ImageItemList: FC = () => {
 		getData(keyword);
 	}, [keyword]);
 
-	return (
-		<div className={classes.root}>
-			{data.map((tile) => (
-				<div>
-					<Button onClick={() => history.push("/download/" + tile.title)}>
+	const displayImage = () => {
+		return (
+			<div>
+				{data.map((tile) => (
+					<div>
 						<img
 							className={classes.tileImage}
 							src={tile.image}
 							alt={tile.title}
 						/>
+					</div>
+				))}
+			</div>
+		);
+	};
+
+	const downloadButton = () => {
+		return (
+			<div>
+				{data.map((tile) => (
+					<Button variant="contained" href={tile.downloadUrl}>
+						無料ダウンロード
 					</Button>
-					<h3>{tile.title}</h3>
-				</div>
-			))}
+				))}
+			</div>
+		);
+	};
+
+	return (
+		<div>
+			<TopHeader />
+			<div className={classes.main}>
+				{displayImage()}
+				{downloadButton()}
+			</div>
 		</div>
 	);
 };
 
-export default ImageItemList;
+export default DownloadPage;
